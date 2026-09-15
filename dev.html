@@ -160,9 +160,12 @@
   <!-- Real, sourced numbers only. Review count/rating: Purdy Electric's real Google Business
        Profile (share.google/TkdXrnhPCegUkf1gT), checked 2026-09-15.
        Years in business: business's own "Serving Customers Since 1976" claim (site + logo).
-       BBB rating: bbb.org profile for Purdy Electric Co Inc (not accredited, A+ letter grade).
        No confirmed public license number was found, so a "Licensed & Insured" tile was
-       replaced with the confirmed Kohler/Cummins authorized-dealer status instead of guessing. -->
+       replaced with the confirmed Kohler/Cummins authorized-dealer status instead of guessing.
+       Deliberately NOT showing a BBB rating tile: their bbb.org profile shows an A+ letter
+       grade but explicitly states "Not BBB Accredited" — a prominent "A+ BBB Rating" badge in
+       a trust bar reads as an accreditation claim to most visitors even though it's technically
+       just a grade, so it's misleading here and was pulled after being flagged. -->
   <section class="stats-bar" aria-label="Trust indicators">
     <div class="wrap stats-grid">
       <div class="stat reveal" data-ghost="29">
@@ -177,9 +180,9 @@
         <span class="stat-value">50</span>
         <span class="stat-label">Years Serving Rome</span>
       </div>
-      <div class="stat reveal" data-ghost="A+">
-        <span class="stat-value">A+</span>
-        <span class="stat-label">BBB Rating</span>
+      <div class="stat reveal" data-ghost="Kohler">
+        <span class="stat-value">Kohler &amp; Cummins</span>
+        <span class="stat-label">Authorized Generator Dealer</span>
       </div>
     </div>
   </section>
@@ -526,7 +529,7 @@
   </div>
 
   <div class="wrap footer-bottom">
-    <p>&copy; <span id="footer-year"></span> Purdy Electric Co., Inc. — A+ BBB Rating</p>
+    <p>&copy; <span id="footer-year"></span> Purdy Electric Co., Inc. — Serving Rome, GA Since 1976</p>
     <a class="back-to-top" href="#main">Back to top ↑</a>
   </div>
 </footer>
