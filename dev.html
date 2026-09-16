@@ -19,7 +19,13 @@
 <!-- <meta property="og:url" content="https://example.com/"> -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<!-- Non-render-blocking Google Fonts load (Lighthouse flagged ~1.6s of render-blocking time
+     from this being a plain <link rel="stylesheet">): fetch with media="print" so it doesn't
+     block the first paint, then swap to media="all" once it's loaded. Degrades gracefully to a
+     normal blocking stylesheet with JS disabled via the <noscript> fallback. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">
 {
@@ -90,7 +96,7 @@
   </div>
   <div class="wrap main-nav">
     <a class="logo" href="#main" aria-label="Purdy Electric Co., Inc. — home">
-      <img class="logo-img" src="assets/logo.png" alt="Purdy Electric Co., Inc. logo">
+      <img class="logo-img" src="assets/logo.png" alt="Purdy Electric Co., Inc. logo" width="291" height="128">
     </a>
     <nav aria-label="Primary">
       <ul class="nav-links">
@@ -136,7 +142,7 @@
        for a stock photo at Patrik's explicit request; replace with a real team/job photo when
        available. -->
   <section class="hero">
-    <img class="hero-bg-photo" src="assets/hero-electrician.jpg" alt="Electrician inspecting a residential circuit breaker panel in a home garage" loading="eager">
+    <img class="hero-bg-photo" src="assets/hero-electrician.jpg" alt="Electrician inspecting a residential circuit breaker panel in a home garage" loading="eager" width="1600" height="1064">
     <div class="hero-edge-label" aria-hidden="true">ROME, GA</div>
     <div class="wrap hero-inner">
       <div class="hero-copy">
@@ -299,7 +305,7 @@
              not Purdy Electric's own staff. Photo by Pexels
              https://images.pexels.com/photos/32588553/pexels-photo-32588553.jpeg (Pexels
              License, free for commercial use). Replace with a real team/owner photo when available. -->
-        <img class="stock-photo" src="assets/about-electrician.jpg" alt="Electrician working carefully on wiring inside an open equipment panel" loading="lazy">
+        <img class="stock-photo" src="assets/about-electrician.jpg" alt="Electrician working carefully on wiring inside an open equipment panel" loading="lazy" width="506" height="900">
       </div>
       <div class="about-copy reveal">
         <h2>50 Years of Keeping Rome Powered</h2>
@@ -350,16 +356,16 @@
       <h2 class="reveal">Recent Work</h2>
       <div class="gallery-grid">
         <button type="button" class="gallery-item reveal" data-lightbox-index="0" aria-label="View larger photo: residential electrical wiring">
-          <img class="stock-photo gallery-photo" src="assets/gallery-residential.jpg" alt="Electrician installing a new wall outlet box during a residential wiring job" loading="lazy">
+          <img class="stock-photo gallery-photo" src="assets/gallery-residential.jpg" alt="Electrician installing a new wall outlet box during a residential wiring job" loading="lazy" width="533" height="800">
         </button>
         <button type="button" class="gallery-item reveal" data-lightbox-index="1" aria-label="View larger photo: commercial wiring project">
-          <img class="stock-photo gallery-photo" src="assets/gallery-commercial.jpg" alt="Modern commercial ceiling conduit and wiring installation" loading="lazy">
+          <img class="stock-photo gallery-photo" src="assets/gallery-commercial.jpg" alt="Modern commercial ceiling conduit and wiring installation" loading="lazy" width="533" height="800">
         </button>
         <button type="button" class="gallery-item reveal" data-lightbox-index="2" aria-label="View larger photo: standby generator install">
-          <img class="stock-photo gallery-photo" src="assets/gallery-generator.jpg" alt="Outdoor standby generator unit installed at a commercial building" loading="lazy">
+          <img class="stock-photo gallery-photo" src="assets/gallery-generator.jpg" alt="Outdoor standby generator unit installed at a commercial building" loading="lazy" width="800" height="600">
         </button>
         <button type="button" class="gallery-item reveal" data-lightbox-index="3" aria-label="View larger photo: service and repair call">
-          <img class="stock-photo gallery-photo" src="assets/gallery-repair.jpg" alt="Electrician using a multimeter to diagnose an electrical panel during a service call" loading="lazy">
+          <img class="stock-photo gallery-photo" src="assets/gallery-repair.jpg" alt="Electrician using a multimeter to diagnose an electrical panel during a service call" loading="lazy" width="450" height="800">
         </button>
       </div>
     </div>
@@ -385,7 +391,7 @@
       <p class="service-area-list">Purdy Electric Co., Inc. is based at 3476 Old Dalton Rd NE in Rome, GA, serving residential and commercial customers throughout Rome and the surrounding Floyd County area.</p>
       <div class="service-area-grid">
         <figure class="service-area-photo reveal">
-          <img src="assets/rome-skyline.jpg" alt="View of downtown Rome, Georgia, the city Purdy Electric has served since 1976" loading="lazy">
+          <img src="assets/rome-skyline.jpg" alt="View of downtown Rome, Georgia, the city Purdy Electric has served since 1976" loading="lazy" width="643" height="160">
           <figcaption>Downtown Rome, GA</figcaption>
         </figure>
         <div class="map-embed reveal">
@@ -483,7 +489,7 @@
   <div class="wrap footer-grid">
     <div class="footer-col footer-brand">
       <div class="footer-logo">
-        <img class="logo-img footer-logo-img" src="assets/logo.png" alt="Purdy Electric Co., Inc. logo" loading="lazy">
+        <img class="logo-img footer-logo-img" src="assets/logo.png" alt="Purdy Electric Co., Inc. logo" loading="lazy" width="291" height="128">
       </div>
       <p>Serving Customers Since 1976 — electrical work for homes and businesses in Rome, GA &amp; Floyd County.</p>
       <p class="footer-rating">★★★★★ 4.6 · 29 Google Reviews</p>

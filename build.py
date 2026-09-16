@@ -16,10 +16,22 @@ CSS = SITE / "styles.css"
 html = SRC_HTML.read_text(encoding="utf-8")
 css = CSS.read_text(encoding="utf-8")
 
-# Inline stylesheet
+
+def minify_css(text):
+    """Conservative minifier: strip comments, collapse whitespace, trim space around
+    punctuation. styles.css stays fully commented/formatted as the dev source — only the
+    embedded copy in index.html is minified, saving ~6KiB (flagged by Lighthouse)."""
+    text = re.sub(r"/\*.*?\*/", "", text, flags=re.DOTALL)
+    text = re.sub(r"\s+", " ", text)
+    text = re.sub(r"\s*([{}:;,])\s*", r"\1", text)
+    text = re.sub(r";}", "}", text)
+    return text.strip()
+
+
+# Inline stylesheet (minified — dev source stays readable in styles.css)
 html = html.replace(
     '<link rel="stylesheet" href="styles.css">',
-    f"<style>\n{css}\n</style>",
+    f"<style>{minify_css(css)}</style>",
 )
 
 # Embed every local asset (assets/...) as a base64 data URI
