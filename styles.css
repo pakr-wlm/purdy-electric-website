@@ -79,6 +79,16 @@ a { color: inherit; }
 .site-header { position: absolute; top: 0; left: 0; right: 0; z-index: 50; }
 .site-header.is-scrolled { position: fixed; }
 
+/* Once the header is fixed (scrolled), a bare anchor jump (skip-link, back-to-top, the footer's
+   real #services link) lands the target flush with the viewport's true top — right where the
+   fixed header now sits, burying the section's own heading under it. scroll-margin-top offsets
+   the landing spot by the scrolled header's real height (measured: ~98px desktop, ~53px under
+   the 640px breakpoint where the topbar is already hidden) plus a little breathing room. */
+#main, #services, #about, #reviews, #service-area, #contact { scroll-margin-top: 112px; }
+@media (max-width: 640px) {
+  #main, #services, #about, #reviews, #service-area, #contact { scroll-margin-top: 66px; }
+}
+
 .topbar {
   background: transparent;
   color: #c9cdd6;

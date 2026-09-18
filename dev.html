@@ -564,12 +564,25 @@
   });
 
   var header = document.getElementById('site-header');
-  var onScroll = function () {
+  var applyScrolledState = function () {
     if (window.scrollY > 12) { header.classList.add('is-scrolled'); }
     else { header.classList.remove('is-scrolled'); }
   };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  // Batched into one read+write per animation frame — reading window.scrollY directly inside
+  // the raw scroll handler forces a synchronous layout on every single scroll event once the
+  // class toggle has just resized the header (padding/logo shrink), a real Lighthouse "forced
+  // reflow" finding on the same scroll-driven header-shrink technique.
+  var scrollTicking = false;
+  window.addEventListener('scroll', function () {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(function () {
+        applyScrolledState();
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  }, { passive: true });
+  applyScrolledState();
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var revealEls = document.querySelectorAll('.reveal');
